@@ -18,6 +18,7 @@ public class Computador {
         this.preco = precoComputador;
         //so é opcional
         this.sistemaOperacional = null;
+        this.memoriaUSB = null;
         //eis a composição...
         this.hardwares = new HardwareBasico[3];
         this.hardwares[0] = new HardwareBasico(processadorNome, processadorFrequencia);
