@@ -74,7 +74,7 @@ public class Main {
             }
         } while (true);
 
-        System.out.println("========== RESUMO DA COMPRA ==========");
+        System.out.println("RESUMO DA COMPRA: ");
         System.out.println("Cliente: " + cliente.getNome());
         System.out.println("CPF: " + cliente.getCpf());
         System.out.println();
