@@ -39,6 +39,7 @@ public class Computador {
 
     public static void registraPromocao(Computador computador){
         promocoes[numPromocoes] = computador;
+        numPromocoes++;
     }
 
     public void addMemoriaUSB(MemoriaUSB musb){
@@ -47,7 +48,7 @@ public class Computador {
 
     public static void mostraPCConfigs(){
         for (int i = 0; i < numPromocoes; i++){
-            System.out.println("Promoção " + i + ": ");
+            System.out.println("Promoção " + (i + 1) + ": ");
             promocoes[i].mostraDetalhesPromocoes();
         }
     }
