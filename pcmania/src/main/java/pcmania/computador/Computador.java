@@ -41,7 +41,11 @@ public class Computador {
         promocoes[numPromocoes] = computador;
     }
 
-    public void mostraPCConfigs(){
+    public void addMemoriaUSB(MemoriaUSB musb){
+        this.memoriaUSB = musb;
+    }
+
+    public static void mostraPCConfigs(){
         for (int i = 0; i < numPromocoes; i++){
             System.out.println("Promoção " + i + ": ");
             promocoes[i].mostraDetalhesPromocoes();
@@ -62,10 +66,6 @@ public class Computador {
             System.out.println("Acompanha " + memoriaUSB.getNome() + " - " + memoriaUSB.getCapacidade() + "GB");
         }
         System.out.println();
-    }
-
-    public void addMemoriaUSB(MemoriaUSB musb){
-        this.memoriaUSB = musb;
     }
 
 }
