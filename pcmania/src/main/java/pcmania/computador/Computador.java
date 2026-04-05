@@ -12,6 +12,9 @@ public class Computador {
     private SistemaOperacional sistemaOperacional;
     private HardwareBasico[] hardwares;
 
+    private static Computador[] promocoes = new Computador[10];
+    private static int numPromocoes = 0;
+
     public Computador(String marcaComputador, float precoComputador, String processadorNome, float processadorFrequencia, String memoriaRamNome, float memoriaRamCapacidade, String hdNome, float hdCapacidade) {
         //comp
         this.marca = marcaComputador;
@@ -26,9 +29,6 @@ public class Computador {
         this.hardwares[2] = new HardwareBasico(hdNome, hdCapacidade);
     }
 
-    public String getMarca() {
-        return marca;
-    }
     public float getPreco() {
         return preco;
     }
@@ -37,18 +37,29 @@ public class Computador {
         this.sistemaOperacional = new SistemaOperacional(nome, tipo);
     }
 
+    public static void registraPromocao(Computador computador){
+        promocoes[numPromocoes] = computador;
+    }
+
     public void mostraPCConfigs(){
+        for (int i = 0; i < numPromocoes; i++){
+            System.out.println("Promoção " + i + ": ");
+            promocoes[i].mostraDetalhesPromocoes();
+        }
+    }
+
+    public void mostraDetalhesPromocoes(){
         System.out.println("Marca: " + marca);
         System.out.println("Preço: R$" + preco);
 
-        for(HardwareBasico hb : hardwares){
-            System.out.println(hb.getNome() + " - " + hb.getCapacidade());
+        for (HardwareBasico hardwareBasico : hardwares) {
+            System.out.println(hardwareBasico.getNome() + " - " + hardwareBasico.getCapacidade());
         }
-        if(sistemaOperacional != null){
+        if (sistemaOperacional != null) {
             System.out.println("Sistema Operacional: " + sistemaOperacional.getNome() + " - " + sistemaOperacional.getTipo() + " bits");
         }
-        if(memoriaUSB != null) {
-            System.out.println("Acompanha: " + memoriaUSB.getNome() + " - " + memoriaUSB.getCapacidade() + "GB");
+        if (memoriaUSB != null) {
+            System.out.println("Acompanha " + memoriaUSB.getNome() + " - " + memoriaUSB.getCapacidade() + "GB");
         }
         System.out.println();
     }
