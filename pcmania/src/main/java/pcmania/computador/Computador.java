@@ -1,0 +1,72 @@
+package pcmania.computador;
+
+import pcmania.hardware.HardwareBasico;
+import pcmania.hardware.MemoriaUSB;
+import pcmania.sistema.SistemaOperacional;
+
+public class Computador {
+    private String marca;
+    private float preco;
+    //Computador é a parte Todo, bo pras associações, yay...
+    private MemoriaUSB memoriaUSB;
+    private SistemaOperacional sistemaOperacional;
+    private HardwareBasico[] hardwares;
+
+    private static Computador[] promocoes = new Computador[10];
+    private static int numPromocoes = 0;
+
+    public Computador(String marcaComputador, float precoComputador, String processadorNome, float processadorFrequencia, String memoriaRamNome, float memoriaRamCapacidade, String hdNome, float hdCapacidade) {
+        //comp
+        this.marca = marcaComputador;
+        this.preco = precoComputador;
+        //so é opcional
+        this.sistemaOperacional = null;
+        this.memoriaUSB = null;
+        //eis a composição...
+        this.hardwares = new HardwareBasico[3];
+        this.hardwares[0] = new HardwareBasico(processadorNome, processadorFrequencia);
+        this.hardwares[1] = new HardwareBasico(memoriaRamNome, memoriaRamCapacidade);
+        this.hardwares[2] = new HardwareBasico(hdNome, hdCapacidade);
+    }
+
+    public float getPreco() {
+        return preco;
+    }
+
+    public void addSistemaOperacional(String nome, int tipo) {
+        this.sistemaOperacional = new SistemaOperacional(nome, tipo);
+    }
+
+    public static void registraPromocao(Computador computador){
+        promocoes[numPromocoes] = computador;
+        numPromocoes++;
+    }
+
+    public void addMemoriaUSB(MemoriaUSB musb){
+        this.memoriaUSB = musb;
+    }
+
+    public static void mostraPCConfigs(){
+        for (int i = 0; i < numPromocoes; i++){
+            System.out.println("Promoção " + (i + 1) + ": ");
+            promocoes[i].mostraDetalhesPromocoes();
+        }
+    }
+
+    public void mostraDetalhesPromocoes(){
+        System.out.println("Marca: " + marca);
+        System.out.println("Preço: R$" + preco);
+
+        for (HardwareBasico hardwareBasico : hardwares) {
+            System.out.println(hardwareBasico.getNome() + " - " + hardwareBasico.getCapacidade());
+        }
+        if (sistemaOperacional != null) {
+            System.out.println("Sistema Operacional: " + sistemaOperacional.getNome() + " - " + sistemaOperacional.getTipo() + " bits");
+        }
+        if (memoriaUSB != null) {
+            System.out.println("Acompanha " + memoriaUSB.getNome() + " - " + memoriaUSB.getCapacidade() + "GB");
+        }
+        System.out.println();
+    }
+
+}
