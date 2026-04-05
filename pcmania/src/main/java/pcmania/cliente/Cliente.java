@@ -11,6 +11,8 @@ public class Cliente {
     public Cliente(String nome, String cpf) {
         this.nome = nome;
         this.cpf = cpf;
+        this.computadores = new Computador[2];
+        this.quantidadeComputadores =  0;
     }
 
     public String getNome() {
@@ -18,6 +20,23 @@ public class Cliente {
     }
     public String getCpf() {
         return cpf;
+    }
+    public Computador[] getComputadores(){
+        return computadores;
+    }
+    public int getQuantidade(){
+        return quantidadeComputadores;
+    }
+
+    public void addComputador(Computador computador){
+        if (quantidadeComputadores < computadores.length) {
+            Computador[] novoArrayComputadores = new Computador[computadores.length * 2];
+            for (int i = 0; i< computadores.length; i++){
+                novoArrayComputadores[i] = computadores[i];
+            }
+            computadores = novoArrayComputadores;
+        }
+        computadores[quantidadeComputadores] = computador;
     }
 
     public float calculaTotalCompra(){
