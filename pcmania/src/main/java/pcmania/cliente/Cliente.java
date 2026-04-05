@@ -29,14 +29,14 @@ public class Cliente {
     }
 
     public void addComputador(Computador computador){
-        if (quantidadeComputadores < computadores.length) {
+        if (quantidadeComputadores >= computadores.length) {
             Computador[] novoArrayComputadores = new Computador[computadores.length * 2];
             for (int i = 0; i< computadores.length; i++){
                 novoArrayComputadores[i] = computadores[i];
             }
             computadores = novoArrayComputadores;
         }
-        computadores[quantidadeComputadores] = computador;
+        computadores[quantidadeComputadores++] = computador;
     }
 
     public float calculaTotalCompra(){
